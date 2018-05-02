@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Oracle PIM Upgrade Suite" verbose="2">
+
+<parameter name="browserType" value="firefox"/>
+<listeners>
+         <listener class-name="com.Test.CustomizedEmailableReport" />
+    </listeners>
+  <test  name="PDH TestCases">
+  <classes>
+			<class name="com.Cloud.CloudLogic"></class>
+		</classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
