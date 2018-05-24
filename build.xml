@@ -1,4 +1,4 @@
-<project name="TestAutomation" basedir=".">
+<project name="TestAutomation" default="sendMail"  basedir=".">
     <property name="LIB" value="${basedir}/lib" />
     <property name="BIN" value="${basedir}/bin" />
     <path id="master-classpath">
@@ -20,5 +20,39 @@
             </classpath>
         </xslt>
     </target>
+	
+	 <target name="makexsltreports" depends="generateReport" >
+	
+	
 
-</project>
+	<xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/testng-results.xsl" out="${basedir}/testng-xslt/index.html">
+	<param name="testNgXslt.outputDir" expression="${basedir}/testng-xslt/"/>
+		<param expression="true" name="testNgXslt.showRuntimeTotals" />
+		 <param expression="true" name="testNgXslt.sortTestCaseLinks" />
+		 <param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />
+	</xslt>
+	</target>
+	
+
+	<!-- using javax.mail.jar and javax.activation.jar trying to send report as zip file -->
+
+    <target name="sendMail" depends="makexsltreports" >
+   <zip destfile="${basedir}/testng-xslt/.zip" basedir="${basedir}/testng-xslt/" />
+    	
+    	<mail  mailhost="smtp.office365.com"  mailport="587" subject="XSLT report" ssl="true" >
+    		<to address= "kathakali.majumder@kpit.com"/>
+    		
+    		<from address="kathakali.majumder@kpit.com"/>
+    	
+    		<attachments>
+    			
+    			<fileset dir="${basedir}/testng-xslt/" >
+    <include name="**/*.zip"/>
+    
+</fileset>
+
+    		
+    		</attachments></mail>
+    	</target>
+    	    </project>
+    

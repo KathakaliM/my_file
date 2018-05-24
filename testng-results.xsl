@@ -257,8 +257,9 @@
 
     <xsl:template name="htmlHead">
         <head>
+        
             <title>
-                <xsl:value-of select="testng:getVariableSafe($testNgXslt.reportTitle, 'TestNG Results')"/>
+                <xsl:value-of select="testng:getVariableSafe($testNgXslt.reportTitle, 'OCUST Results')"/>
             </title>
             <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
             <meta http-equiv="pragma" content="no-cache"/>
@@ -266,6 +267,12 @@
             <meta http-equiv="cache-control" content="no-cache"/>
             <meta http-equiv="cache-control" content="no-store"/>
             <LINK rel="stylesheet" href="style.css"/>
+            
+            <!--  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+           <LINK rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+             
             <xsl:if test="$testNgXslt.cssFile">
                 <LINK rel="stylesheet" href="{$testNgXslt.cssFile}"/>
             </xsl:if>
@@ -516,17 +523,29 @@
         <xsl:result-document href="{testng:absolutePath('overview.html')}" format="xhtml">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="htmlHead"/>
-                <body>
-                    <h2>Test suites overview</h2>
+                  <img src="http://www.kpit.com/newsletters/auto/nlsep2013/logo.jpg" style="float:right" width="150" height="50"/>
+                <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;" >
+
+            
+              
+                    <h2>OCUST REPORT</h2>
+                   
                     <table width="100%">
                         <tr>
                             <td align="center" id="chart-container">
+                            
+                          
                                 <script type="text/javascript">
                                     renderSvgEmbedTag(<xsl:value-of select="$chartWidth"/>, <xsl:value-of select="$chartHeight"/>);
                                 </script>
                             </td>
+                            
                         </tr>
                     </table>
+                    
+
+ 
+                    
                     <xsl:for-each select="$suiteElements">
                         <xsl:variable name="testCaseElements"
                                       select="if (test/@url) then document(test/@url)/test else test"/>
@@ -578,9 +597,83 @@
                                 </tr>
                             </xsl:for-each>
                         </table>
+                        
+               <!-- Put the below part, this should be put after </table> -->
+
+ <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    Indicators
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    Wrapper for slides
+    <div class="carousel-inner">
+
+      <div class="item active">
+        <img src="http://wallpaperbackgrounds.com/Content/wallpapers/technology/robots/125077_technology_robots.jpg"  style="width:100%;height:50%;"/>
+        <div class="carousel-caption">
+
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="http://ekonomicky-denik.cz/wp-content/uploads/2015/04/digital-future.jpg"  style="width:100%;height:50%;" />
+        <div class="carousel-caption">
+          
+        </div>
+      </div>
+    
+      <div class="item">
+        <img src="http://images.humanresourcesonline.net.s3.amazonaws.com/wp-content/uploads/2017/10/Wani-HR-tech-123rf.jpg"  style="width:100%;height:50%;"/>
+        <div class="carousel-caption">
+       
+        </div>
+      </div>
+       </div>
+	  
+      <div class="item">
+        <img src="file:///C:/Users/sparshc/Desktop/Self%20Study/4.PNG" alt="Chicago" style="width:100%;"/>
+        <div class="carousel-caption">
+          
+        </div>
+      </div>
+	  
+      <div class="item">
+        <img src="file:///C:/Users/sparshc/Desktop/Self%20Study/5.PNG" alt="Chicago" style="width:100%;"/>
+        <div class="carousel-caption">
+          
+        </div>
+      </div>
+	  
+      <div class="item">
+        <img src="file:///C:/Users/sparshc/Desktop/Self%20Study/6.PNG" alt="Chicago" style="width:100%;"/>
+        <div class="carousel-caption">
+          
+        </div>
+      </div>
+  
+   
+
+    Left and right controls
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+               -->          
                         <br/>
+                           
+                         
+                          
                     </xsl:for-each>
                     <xsl:call-template name="powered-by"/>
+                     
                 </body>
             </html>
         </xsl:result-document>
@@ -589,7 +682,8 @@
         <xsl:result-document href="{testng:absolutePath('reporterOutput.html')}" format="xhtml">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="htmlHead"/>
-                <body>
+                <img src="http://www.kpit.com/newsletters/auto/nlsep2013/logo.jpg" style="float:right" width="150" height="50"/>
+                <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;">
                     <h2>Reporter output</h2>
                     <xsl:for-each select="reporter-output/line">
                         <div>
@@ -610,9 +704,10 @@
         <xsl:result-document href="{testng:absolutePath('navigation.html')}" format="xhtml">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="htmlHead"/>
-                <body>
+                <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;">
+                
                     <h2 style="margin-bottom: 5px;">
-                        <xsl:value-of select="testng:getVariableSafe($testNgXslt.reportTitle, 'TestNG Results')"/>
+                        <xsl:value-of select="testng:getVariableSafe($testNgXslt.reportTitle, 'OCUST Results')"/>
                     </h2>
                     <div>
                         <a href="overview.html" target="content"
@@ -680,6 +775,9 @@
                             </xsl:call-template>
                         </xsl:for-each>
                     </div>
+                    
+                    
+                    
                 </body>
             </html>
         </xsl:result-document>
@@ -691,7 +789,8 @@
         <xsl:result-document href="{testng:absolutePath(testng:suiteContentFileName($suiteElement))}" format="xhtml">
             <html>
                 <xsl:call-template name="htmlHead"/>
-                <body>
+               
+                <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;">
                     <table width="100%" style="font-size: 16px; margin-bottom: 10px;" cellspacing="1">
                         <tr>
                             <td width="100%">
@@ -731,7 +830,8 @@
         <xsl:result-document href="{testng:absolutePath(testng:suiteGroupsFileName($suiteElement))}" format="xhtml">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="htmlHead"/>
-                <body>
+                 <img src="http://www.kpit.com/newsletters/auto/nlsep2013/logo.jpg" style="float:right" width="150" height="50"/>
+                <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;">
                     <h2>
                         Groups for suite:
                         <b>
@@ -1020,7 +1120,7 @@
             <xsl:result-document href="{testng:absolutePath(testng:testCaseContentFileName(.))}" format="xhtml">
                 <html>
                     <xsl:call-template name="htmlHead"/>
-                    <body>
+                    <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk41NcVjQre60NRKXpMb2MdTM_tmcJ-tAGfomSI_hLBYH9bk2u2g" style="background-repeat:no-repeat;background-size:cover;">
                         <table width="100%" style="font-size: 16px; margin-bottom: 10px;" cellspacing="1">
                             <tr>
                                 <td width="100%">
@@ -1094,9 +1194,9 @@
 
     <xsl:template name="powered-by">
         <div style="margin-top: 15px; color: gray; text-align: center; font-size: 9px;">
-            Generated with
+          
             <a href="http://code.google.com/p/testng-xslt/" style="color: #8888aa;" target="_blank">
-                TestNG XSLT
+                
             </a>
         </div>
     </xsl:template>
